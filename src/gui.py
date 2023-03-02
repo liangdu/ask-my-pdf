@@ -54,10 +54,14 @@ def ui_info():
 		""")
 	ui_spacer(1)
 	st.markdown('Source code can be found [here](https://github.com/mobarski/ask-my-pdf).')
-
+import os
+openai_key = os.environ.get('openai_api_key')
+##openai key sk-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
 def ui_api_key():
-	st.write('## 1. Enter your OpenAI API key')
+
+	st.write(openai_key)
 	def on_change():
+		ss['api_key']=openai_key
 		api_key = ss['api_key']
 		model.use_key(api_key)
 		if 'data_dict' not in ss: ss['data_dict'] = {} # used only with DictStorage

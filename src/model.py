@@ -1,3 +1,4 @@
+import time
 from sklearn.metrics.pairwise import cosine_distances
 
 from collections import Counter
@@ -31,6 +32,8 @@ def get_vectors(text_list, pg=None):
 	vectors = []
 	usage = Counter()
 	for i,text in enumerate(text_list):
+		#delay each loop to avoid rate limit
+		time.sleep(5)
 		resp = ai.embedding(text)
 		v = resp['vector']
 		u = resp['usage']
